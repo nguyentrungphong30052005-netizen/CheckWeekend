@@ -1,0 +1,42 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Kiểm tra cuối tuần";
+
+    // Lấy ngày giờ hiện tại
+    var today = DateTime.Now;
+
+    // Kiểm tra xem có phải Thứ Bảy (Saturday) hoặc Chủ Nhật (Sunday) không
+    bool isWeekend = today.DayOfWeek == DayOfWeek.Saturday || today.DayOfWeek == DayOfWeek.Sunday;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4">Kiểm tra Cuối tuần</h2>
+
+                    <p class="text-muted fs-5">
+                        Hôm nay là: <strong>@today.ToString("dd/MM/yyyy")</strong> (@today.ToString("dddd", new System.Globalization.CultureInfo("vi-VN")))
+                    </p>
+
+                    <hr />
+
+                    @if (isWeekend)
+                    {
+                        <div class="alert alert-success fs-4" role="alert">
+                            🎉 <strong>Hôm nay là cuối tuần!</strong> Hãy tận hưởng thời gian nghỉ ngơi nhé!
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning fs-4" role="alert">
+                            💼 <strong>Hôm nay là ngày làm việc trong tuần.</strong> Chúc bạn một ngày làm việc hiệu quả!
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
